@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090812">
+  <meta name="description" content="Drive Gráfico para Drive Gráfico para GPU Power VR VR: projeto independente de pesquisa sobre drivers e compatibilidade gráfica.">
+  <title>Drive Gráfico para Drive Gráfico para GPU Power VR VR — Projeto independente</title>
+  <style>
+    :root {
+      --bg: #090812;
+      --panel: #121020;
+      --panel2: #19152b;
+      --purple: #9b5cff;
+      --purple2: #7138d8;
+      --text: #f4f0ff;
+      --muted: #b7aecb;
+      --line: rgba(184, 139, 255, .2);
+      --green: #8de5bd;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; color: var(--text); background:
+        radial-gradient(ellipse at 80% 0%, rgba(113,56,216,.2), transparent 38%),
+        radial-gradient(ellipse at 0% 35%, rgba(87,45,155,.13), transparent 35%), var(--bg);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.65;
+    }
+    a { color: inherit; }
+    .container { width: min(1120px, calc(100% - 40px)); margin: auto; }
+    header {
+      position: sticky; top: 0; z-index: 10; backdrop-filter: blur(16px);
+      background: rgba(9,8,18,.82); border-bottom: 1px solid var(--line);
+    }
+    .nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { font-weight: 900; letter-spacing: .08em; font-size: 1.2rem; text-decoration: none; }
+    .brand span { color: var(--purple); }
+    nav { display: flex; gap: 22px; align-items: center; }
+    nav a { text-decoration: none; color: var(--muted); font-size: .92rem; }
+    nav a:hover { color: white; }
+    .menu-btn { display: none; border: 1px solid var(--line); background: var(--panel); color: white; padding: 8px 12px; border-radius: 10px; }
+    .hero { padding: 105px 0 90px; text-align: center; }
+    .eyebrow { color: #c7a6ff; text-transform: uppercase; letter-spacing: .18em; font-size: .78rem; font-weight: 800; }
+    h1 { font-size: clamp(2.7rem, 8vw, 5.6rem); line-height: 1.02; margin: 18px 0; letter-spacing: -.055em; }
+    h1 span { color: var(--purple); text-shadow: 0 0 35px rgba(155,92,255,.35); }
+    .hero p { max-width: 760px; margin: 0 auto; color: var(--muted); font-size: clamp(1rem, 2.5vw, 1.2rem); }
+    .actions { display: flex; justify-content: center; gap: 13px; flex-wrap: wrap; margin-top: 30px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 20px; border-radius: 12px; text-decoration: none; font-weight: 800; border: 1px solid var(--line); transition: .2s; }
+    .btn.primary { background: linear-gradient(135deg, var(--purple2), var(--purple)); border: 0; color: white; box-shadow: 0 10px 35px rgba(113,56,216,.25); }
+    .btn.secondary { background: rgba(255,255,255,.035); }
+    .btn:hover { transform: translateY(-2px); }
+    .status { display: inline-flex; align-items: center; gap: 8px; margin-top: 30px; color: var(--green); font-size: .88rem; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 12px var(--green); }
+    section { padding: 65px 0; scroll-margin-top: 80px; }
+    .section-head { max-width: 760px; margin-bottom: 28px; }
+    .section-head h2 { font-size: clamp(1.8rem, 4vw, 2.7rem); line-height: 1.15; margin: 8px 0 12px; }
+    .section-head p, .muted { color: var(--muted); }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .card { background: linear-gradient(145deg, rgba(25,21,43,.95), rgba(15,13,26,.95)); border: 1px solid var(--line); padding: 23px; border-radius: 18px; }
+    .card h3 { margin: 8px 0; font-size: 1.12rem; }
+    .card p { color: var(--muted); margin: 0; font-size: .96rem; }
+    .icon { font-size: 1.6rem; }
+    .wide { display: grid; grid-template-columns: 1.1fr .9fr; gap: 22px; align-items: stretch; }
+    .callout { border: 1px solid rgba(155,92,255,.35); background: linear-gradient(135deg, rgba(113,56,216,.18), rgba(18,16,32,.9)); border-radius: 20px; padding: 26px; }
+    .callout h3 { margin-top: 0; }
+    .callout p, .callout li { color: var(--muted); }
+    ul { padding-left: 20px; }
+    .specs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .spec { padding: 17px; border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.025); }
+    .spec small { display: block; color: var(--muted); }
+    .spec strong { display: block; margin-top: 4px; }
+    .steps { counter-reset: step; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .step { counter-increment: step; }
+    .step:before { content: "0" counter(step); color: var(--purple); font-weight: 900; letter-spacing: .1em; }
+    .notice { border-left: 3px solid var(--purple); padding: 13px 17px; background: rgba(155,92,255,.08); color: var(--muted); border-radius: 0 12px 12px 0; }
+    footer { border-top: 1px solid var(--line); padding: 30px 0; color: var(--muted); font-size: .9rem; }
+    footer .container { display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
+    @media (max-width: 800px) {
+      .grid { grid-template-columns: 1fr 1fr; }
+      .wide { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .container { width: min(100% - 28px, 1120px); }
+      .nav { min-height: 64px; }
+      .menu-btn { display: block; }
+      nav { display: none; position: absolute; top: 64px; left: 0; right: 0; padding: 16px 22px 20px; background: #100d1d; border-bottom: 1px solid var(--line); flex-direction: column; align-items: flex-start; }
+      nav.open { display: flex; }
+      .hero { padding: 78px 0 65px; }
+      section { padding: 48px 0; }
+      .grid, .specs, .steps { grid-template-columns: 1fr; }
+      .card { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a class="brand" href="#inicio">DRIVE GRÁFICO <span>POWER VR</span></a>
+    <button class="menu-btn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">Menu ☰</button>
+    <nav id="navLinks">
+      <a href="#sobre">Sobre</a>
+      <a href="#tecnologia">Tecnologias</a>
+      <a href="#dispositivo">Hardware</a>
+      <a href="#arquitetura">Arquitetura</a>
+      <a href="#limites">Limitações</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#github">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="inicio">
+    <div class="container">
+      <div class="eyebrow">Projeto independente • Pesquisa gráfica</div>
+      <h1>Drive gráfico para<br><span>Drive Gráfico para GPU Power VR VR.</span></h1>
+      <p>O Drive Gráfico para Drive Gráfico para GPU Power VR VR é um projeto independente de pesquisa e desenvolvimento voltado ao estudo de drivers gráficos e da compatibilidade de GPUs PowerVR com aplicações e ambientes de software. A equipe também investiga como funcionam as camadas gráficas usadas para executar aplicações de PC no Android, incluindo o Winlator.</p>
+      <div class="actions">
+        <a class="btn primary" href="#sobre">Conheça o projeto</a>
+        <a class="btn secondary" href="#github">Acessar GitHub ↗</a>
+      </div>
+      <div class="status"><span class="dot"></span> Em desenvolvimento e fase de pesquisa</div>
+    </div>
+  </section>
+
+  <section id="sobre">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Sobre o Drive Gráfico para GPU Power VR</div>
+        <h2>Por que este projeto existe?</h2>
+        <p>Em alguns celulares, determinados jogos e aplicações executados pelo Winlator podem apresentar falhas gráficas, incompatibilidade ou desempenho abaixo do esperado. O projeto nasce da vontade de entender essas limitações e pesquisar soluções técnicas para GPUs PowerVR.</p>
+      </div>
+      <div class="wide">
+        <div class="card">
+          <h3>O que queremos investigar</h3>
+          <p>A arquitetura PowerVR BXM-8-256, as interfaces da pilha proprietária observada, o suporte Vulkan registrado e os requisitos de integração entre espaço de usuário, kernel e Android. A pesquisa começa com documentação, diagnóstico e testes reproduzíveis antes de qualquer promessa de compatibilidade ou melhoria.</p>
+          <br>
+          <p>O objetivo não é simplesmente aumentar FPS em qualquer situação. Compatibilidade, estabilidade, correção visual e desempenho precisam ser avaliados separadamente.</p>
+        </div>
+        <div class="callout">
+          <h3>Nossa abordagem</h3>
+          <ul>
+            <li>Identificar limitações e mensagens de erro.</li>
+            <li>Estudar drivers e APIs gráficas existentes.</li>
+            <li>Testar mudanças pequenas e documentadas.</li>
+            <li>Comparar resultados sem prometer compatibilidade universal.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tecnologia">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Base técnica</div>
+        <h2>Tecnologias que fazem parte da pesquisa</h2>
+        <p>Estas tecnologias têm funções diferentes dentro da cadeia gráfica. O projeto vai estudar como elas se relacionam, sem presumir que todas sejam necessárias em cada dispositivo.</p>
+      </div>
+      <div class="grid">
+        <article class="card"><div class="icon">◇</div><h3>Vulkan</h3><p>API gráfica de baixo nível usada por aplicações e por algumas camadas de tradução. O suporte depende do driver e da implementação do dispositivo.</p></article>
+        <article class="card"><div class="icon">▦</div><h3>OpenGL / OpenGL ES</h3><p>APIs gráficas usadas em jogos e aplicações. A versão e os recursos disponíveis variam conforme o sistema e o driver.</p></article>
+        <article class="card"><div class="icon">◈</div><h3>Mesa</h3><p>Conjunto de drivers e componentes gráficos de código aberto. A compatibilidade com cada GPU depende do driver específico e de sua maturidade.</p></article>
+        <article class="card"><div class="icon">⇄</div><h3>DXVK</h3><p>Camada que traduz chamadas Direct3D 9, 10 e 11 para Vulkan em ambientes compatíveis. Não substitui o driver da GPU.</p></article>
+        <article class="card"><div class="icon">▱</div><h3>Wine</h3><p>Camada de compatibilidade que permite executar muitos programas Windows em outros sistemas. Não é um emulador completo de hardware.</p></article>
+        <article class="card"><div class="icon">⚙</div><h3>Winlator</h3><p>Ambiente Android que combina componentes de compatibilidade e tradução para executar aplicações Windows. O resultado depende de toda a cadeia de software e hardware.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="dispositivo">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Hardware analisado</div>
+        <h2>PowerVR BXM-8-256 no Moto G54 5G</h2>
+        <p>De acordo com o relatório técnico produzido a partir dos arquivos extraídos do aparelho identificado como MT6855, a GPU observada é uma PowerVR BXM-8-256, da Imagination Technologies.</p>
+      </div>
+      <div class="wide">
+        <div class="callout">
+          <h3>Identificação registrada</h3>
+          <div class="specs">
+            <div class="spec"><small>GPU</small><strong>PowerVR BXM-8-256</strong></div>
+            <div class="spec"><small>Fabricante</small><strong>Imagination Technologies</strong></div>
+            <div class="spec"><small>Driver Vulkan</small><strong>PowerVR B-Series</strong></div>
+            <div class="spec"><small>Versão do driver</small><strong>1.15@6133110</strong></div>
+            <div class="spec"><small>API Vulkan anunciada</small><strong>1.1.170</strong></div>
+            <div class="spec"><small>Plataforma identificada</small><strong>MT6855 • ARM64</strong></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>O que foi analisado</h3>
+          <p>O relatório examinou bibliotecas e dados do sistema, incluindo <code>gralloc.rogue.so</code>, <code>libsrv_um.so</code>, <code>vulkan.mtk.so</code>, um inventário de bibliotecas ARM64 e o relatório <code>vkjson.json</code>.</p>
+          <br>
+          <p>Esses elementos ajudam a documentar interfaces, recursos Vulkan, formatos de memória e integração com os serviços PowerVR. Eles não equivalem ao código-fonte completo de um driver.</p>
+        </div>
+      </div>
+      <p class="notice" style="margin-top:18px">A identificação PowerVR BXM-8-256 é a conclusão do relatório técnico enviado para este projeto. Ela substitui a identificação anterior de Mali-G68 usada no planejamento do site.</p>
+    </div>
+  </section>
+
+  <section id="arquitetura">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Análise da pilha gráfica</div>
+        <h2>O que existe por trás do driver</h2>
+        <p>O relatório descreve uma pilha proprietária de espaço de usuário integrada aos serviços do kernel Android e às extensões de memória e sincronização da MediaTek.</p>
+      </div>
+      <div class="grid">
+        <article class="card"><h3>Gralloc Rogue</h3><p><code>gralloc.rogue.so</code> participa da alocação e do mapeamento de buffers gráficos Android. Integra Gralloc/Mapper, DMA-BUF, formatos de imagem e serviços PVR; não é, por si só, o rasterizador Vulkan.</p></article>
+        <article class="card"><h3>Serviços PVRSRV</h3><p><code>libsrv_um.so</code> faz a ponte de espaço de usuário para serviços PVR, incluindo memória virtual da GPU, contextos RGX, submissão de trabalho e sincronização por fences.</p></article>
+        <article class="card"><h3>ICD Vulkan</h3><p><code>vulkan.mtk.so</code> é identificado no relatório como o ICD Vulkan proprietário adaptado pela MediaTek. Implementa a API Vulkan e encaminha trabalho para os serviços PVR.</p></article>
+      </div>
+      <div class="callout" style="margin-top:16px">
+        <h3>Capacidades Vulkan observadas</h3>
+        <p>O relatório registra extensões como <code>VK_KHR_swapchain</code>, memória externa, DMA-BUF, semáforos de timeline, sincronização 2 e <code>VK_IMG_format_pvrtc</code>. Também registra limites e recursos ausentes; portanto, não se deve presumir suporte a toda funcionalidade Vulkan.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="limites">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Limitações conhecidas</div>
+        <h2>O que ainda falta para um driver independente</h2>
+        <p>Os arquivos analisados são uma fotografia útil da implementação proprietária, mas não contêm todos os componentes necessários para controlar o hardware de forma independente.</p>
+      </div>
+      <div class="wide">
+        <div class="card">
+          <h3>Componentes ausentes no material analisado</h3>
+          <ul>
+            <li>Módulo de kernel PVR/IMG correspondente ao mesmo build.</li>
+            <li>Firmware binário e versão exata do core.</li>
+            <li>Device tree, clocks, reguladores e interrupções.</li>
+            <li>Configuração do kernel e interfaces DRM/PVR.</li>
+            <li>Bibliotecas auxiliares e logs de execução da GPU.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Por que isso importa?</h3>
+          <p>O driver de espaço de usuário depende de serviços do kernel para mapear memória, sincronizar operações e submeter comandos ao hardware. Copiar apenas arquivos <code>.so</code> não cria um driver funcional.</p>
+          <br>
+          <p>O relatório recomenda começar por kernel, memória e sincronização, antes de tentar implementar um ICD Vulkan completo.</p>
+        </div>
+      </div>
+      <p class="notice" style="margin-top:18px">Estado realista: neste momento, o material sustenta uma etapa de pesquisa, documentação e planejamento de testes. Ainda não comprova a existência de um driver livre funcional do projeto.</p>
+    </div>
+  </section>
+  <section id="roadmap">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Plano de desenvolvimento</div>
+        <h2>Etapas do projeto</h2>
+        <p>O roadmap segue as dependências técnicas descritas no relatório. É uma direção de pesquisa, não uma promessa de datas ou funcionalidades concluídas.</p>
+      </div>
+      <div class="steps">
+        <article class="card step"><h3>Preservar e documentar</h3><p>Manter os binários originais intactos, registrar hashes e documentar versões, dependências, símbolos e capacidades Vulkan observadas.</p></article>
+        <article class="card step"><h3>Investigar kernel e memória</h3><p>Estudar, com autorização e em ambiente de teste, as interfaces de kernel, firmware, DRM/PVR, DMA-BUF, mapeamentos e sincronização.</p></article>
+        <article class="card step"><h3>Saída gráfica mínima</h3><p>Pesquisar um caminho controlado de memória e uma operação mínima de clear/copy antes de avançar para desenho, shaders e compute.</p></article>
+        <article class="card step"><h3>Vulkan e validação</h3><p>Somente depois das etapas anteriores, estudar um ICD Vulkan mínimo, compilação de shaders e testes de conformidade e estabilidade.</p></article>
+      </div>
+      <p class="notice" style="margin-top:18px">Riscos: chamadas de kernel incorretas podem travar a GPU ou o sistema. O relatório recomenda testes em aparelho secundário, backup e método de recuperação. Não substitua bibliotecas de sistema em /vendor sem uma imagem restaurável.</p>
+    </div>
+  </section>
+  <section id="github">
+    <div class="container">
+      <div class="callout" style="text-align:center">
+        <div class="eyebrow">Código e colaboração</div>
+        <h2>Acompanhe o projeto</h2>
+        <p>Consulte o repositório para acompanhar o código, a documentação, as tarefas e as atualizações da equipe do Drive Gráfico para Drive Gráfico para GPU Power VR VR.</p>
+        <div class="actions">
+          <a class="btn primary" href="https://share.google/QZMRgZOKiHlW6jDDu" target="_blank" rel="noopener noreferrer">Abrir GitHub ↗</a>
+        </div>
+        <p style="font-size:.82rem;margin-top:14px">O endereço específico do repositório será inserido aqui assim que recebermos o link direto do GitHub.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <span><strong>DRIVE GRÁFICO PARA GPU POWER VR</strong> — Projeto independente.</span>
+    <span>Feito para compartilhar pesquisa, testes e aprendizado.</span>
+  </div>
+</footer>
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  menuBtn.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+</body>
+</html>
