@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080b16">
+  <title>PowerVR Open Driver | Bem-vindos</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #080b16;
+      color: #f4f4ff;
+      line-height: 1.6;
+    }
+
+    header {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 30px 20px;
+      background:
+        radial-gradient(circle at 50% 30%, #5424a8 0%, transparent 45%),
+        linear-gradient(135deg, #080b16, #15102b);
+    }
+
+    .tag {
+      color: #bda0ff;
+      border: 1px solid #8655e8;
+      border-radius: 30px;
+      padding: 7px 16px;
+      font-size: 13px;
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      font-size: clamp(36px, 7vw, 65px);
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    h1 span {
+      color: #a77aff;
+    }
+
+    header p {
+      max-width: 650px;
+      color: #c3c1d4;
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    .button {
+      display: inline-block;
+      background: #8655e8;
+      color: white;
+      padding: 13px 25px;
+      border-radius: 9px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: .2s;
+    }
+
+    .button:hover {
+      background: #a77aff;
+      transform: translateY(-3px);
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #0d1020;
+      border-bottom: 1px solid #29243d;
+      padding: 15px;
+      text-align: center;
+    }
+
+    nav a {
+      color: #d6c9ff;
+      text-decoration: none;
+      margin: 0 12px;
+      font-size: 14px;
+    }
+
+    section {
+      max-width: 1050px;
+      margin: auto;
+      padding: 75px 22px;
+    }
+
+    h2 {
+      font-size: 30px;
+      margin-bottom: 20px;
+      color: #bd9aff;
+    }
+
+    .intro {
+      color: #c3c1d4;
+      max-width: 800px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: #12162a;
+      border: 1px solid #30294b;
+      padding: 25px;
+      border-radius: 14px;
+      transition: .2s;
+    }
+
+    .card:hover {
+      border-color: #9b70f0;
+      transform: translateY(-4px);
+    }
+
+    .card h3 {
+      color: #c5aaff;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: #b9b8cb;
+      font-size: 14px;
+    }
+
+    .highlight {
+      background: linear-gradient(120deg, #241547, #11172c);
+      border: 1px solid #6542a5;
+      padding: 30px;
+      border-radius: 15px;
+      margin-top: 30px;
+    }
+
+    .highlight h3 {
+      color: #c9adff;
+      margin-bottom: 12px;
+    }
+
+    ul {
+      padding-left: 22px;
+      color: #c3c1d4;
+    }
+
+    li {
+      margin: 9px 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 35px 20px;
+      background: #050711;
+      color: #85849b;
+      font-size: 13px;
+      border-top: 1px solid #29243d;
+    }
+
+    footer strong {
+      color: #b99aff;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <a href="#sobre">Sobre</a>
+    <a href="#objetivos">Objetivos</a>
+    <a href="#tecnologia">Tecnologia</a>
+    <a href="#equipe">Equipe</a>
+  </nav>
+
+  <header>
+    <div class="tag">PROJETO DE DESENVOLVIMENTO OPEN SOURCE</div>
+
+    <h1>Bem-vindos ao nosso<br>
+      <span>Projeto PowerVR</span>
+    </h1>
+
+    <p>
+      Uma iniciativa da comunidade para investigar, desenvolver
+      e construir um driver gráfico aberto para GPUs PowerVR.
+      Estamos trabalhando para ampliar as possibilidades dessas GPUs.
+    </p>
+
+    <a href="#sobre" class="button">Conheça o projeto</a>
+  </header>
+
+  <section id="sobre">
+    <h2>Sobre o projeto</h2>
+
+    <p class="intro">
+      Nosso projeto nasceu da vontade de explorar o potencial das
+      GPUs PowerVR e investigar caminhos para desenvolver uma
+      implementação de driver gráfico de código aberto.
+
+      A equipe trabalha na análise de código-fonte, componentes
+      do DDK, comunicação com o kernel e compatibilidade entre
+      diferentes partes da arquitetura gráfica.
+    </p>
+
+    <div class="highlight">
+      <h3>Nossa missão</h3>
+      <p>
+        Investigar, desenvolver e contribuir para um ecossistema
+        gráfico mais aberto, acessível e compatível com as GPUs PowerVR.
+      </p>
+    </div>
+  </section>
+
+  <section id="objetivos">
+    <h2>Nossos objetivos</h2>
+
+    <div class="cards">
+      <div class="card">
+        <h3>01. Pesquisa</h3>
+        <p>
+          Estudar a arquitetura PowerVR, o funcionamento do kernel
+          e os componentes necessários para o driver.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>02. Compatibilidade</h3>
+        <p>
+          Investigar a comunicação entre DDK, firmware, kernel
+          e hardware gráfico.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>03. Desenvolvimento</h3>
+        <p>
+          Trabalhar na implementação e integração dos componentes
+          necessários ao driver.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>04. Código aberto</h3>
+        <p>
+          Compartilhar conhecimento e colaborar com a comunidade
+          de desenvolvimento.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tecnologia">
+    <h2>O que estamos investigando?</h2>
+
+    <div class="cards">
+      <div class="card">
+        <h3>PowerVR Rogue</h3>
+        <p>Arquitetura gráfica utilizada em diferentes dispositivos móveis.</p>
+      </div>
+
+      <div class="card">
+        <h3>DDK 1.15</h3>
+        <p>Investigação dos componentes e interfaces do driver.</p>
+      </div>
+
+      <div class="card">
+        <h3>Kernel Linux</h3>
+        <p>Integração com os serviços e interfaces do sistema operacional.</p>
+      </div>
+
+      <div class="card">
+        <h3>Winlator</h3>
+        <p>Um dos possíveis ambientes que queremos explorar no futuro.</p>
+      </div>
+    </div>
+
+    <div class="highlight">
+      <h3>Uma etapa de cada vez</h3>
+      <p>
+        Atualmente, nosso foco está na investigação técnica,
+        identificação de dependências e compreensão do handshake
+        entre os componentes do DDK e o hardware.
+        Ainda existem desafios que precisam ser resolvidos.
+      </p>
+    </div>
+  </section>
+
+  <section id="equipe">
+    <h2>Faça parte dessa jornada</h2>
+
+    <p class="intro">
+      Toda contribuição é importante. Conhecimento, pesquisa,
+      testes, documentação e colaboração ajudam o projeto a avançar.
+    </p>
+
+    <div class="highlight">
+      <h3>Nosso lema</h3>
+      <p>
+        "Conhecimento aberto, colaboração e inovação.
+        O futuro das GPUs PowerVR também pode ser construído pela comunidade."
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p><strong>Projeto PowerVR Open Driver</strong></p>
+    <p>Uma iniciativa independente da comunidade.</p>
+    <p>© 2026 — Todos os direitos reservados aos respectivos autores.</p>
+  </footer>
+
+</body>
+</html>
